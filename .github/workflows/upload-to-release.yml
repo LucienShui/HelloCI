@@ -7,7 +7,7 @@ on:
 jobs:
 
   release:
-    if: github.repository == "PasteUs/HelloCI"
+    if: github.repository == 'PasteUs/HelloCI'
     name: Build with go ${{ matrix.go_version }} on ${{ matrix.os }} and upload
     runs-on: ${{ matrix.os }}
 
@@ -42,7 +42,7 @@ jobs:
       - name: Gzip
         run: |
           mkdir hello-word-${{ matrix.os }}
-          mv main hello-word-${{ matrix.os }}
+          cp main hello-word-${{ matrix.os }}
           tar -czvf hello-word-${{ matrix.os }}.tar.gz hello-word-${{ matrix.os }}
 
       - name: Upload to release
@@ -51,3 +51,13 @@ jobs:
           args: hello-word-${{ matrix.os }}.tar.gz application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_PASSWORD }}
+
+      - name: Publish Docker
+        uses: elgohr/Publish-Docker-Github-Action@2.7
+        with:
+          name: registry.cn-hangzhou.aliyuncs.com/pasteus/hello-ci
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: registry.cn-hangzhou.aliyuncs.com
+          dockerfile: Dockerfile
+          tag_names: true
