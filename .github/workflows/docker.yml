@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   release:
-    if: github.repository == "PasteUs/HelloCI"
+    if: github.repository == 'PasteUs/HelloCI'
     name: Build with go ${{ matrix.go_version }} on ${{ matrix.os }} and upload
     runs-on: ${{ matrix.os }}
 
