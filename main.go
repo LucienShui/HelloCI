@@ -15,5 +15,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello World!")
+	fmt.Println("version 1.0.0")
 }
