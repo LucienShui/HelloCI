@@ -6,9 +6,11 @@ on:
       - master
 
 jobs:
-  update_draft_release:
+  draft_release:
+    name: Draft release
     runs-on: ubuntu-latest
     steps:
       - uses: toolmantim/release-drafter@v5.2.0
+        name: Draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_PASSWORD }}
