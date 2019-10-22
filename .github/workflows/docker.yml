@@ -1,8 +1,6 @@
-name: Go Release
+name: Push to docker repository
 
-on:
-  release:
-    types: [published]
+on: [push]
 
 jobs:
 
@@ -39,25 +37,11 @@ jobs:
         run: |
           go build -v -o main .
 
-      - name: Gzip
-        run: |
-          mkdir hello-word-${{ matrix.os }}
-          cp main hello-word-${{ matrix.os }}
-          tar -czvf hello-word-${{ matrix.os }}.tar.gz hello-word-${{ matrix.os }}
-
-      - name: Upload to release
-        uses: JasonEtco/upload-to-release@master
-        with:
-          args: hello-word-${{ matrix.os }}.tar.gz application/octet-stream
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PASSWORD }}
-
       - name: Publish Docker
         uses: elgohr/Publish-Docker-Github-Action@2.7
         with:
-          name: registry.cn-hangzhou.aliyuncs.com/pasteus/hello-ci
+          name: registry.cn-hangzhou.aliyuncs.com/pasteus/hello-ci:beta
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: registry.cn-hangzhou.aliyuncs.com
           dockerfile: Dockerfile
-          tag_names: true
