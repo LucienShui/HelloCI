@@ -34,11 +34,17 @@ jobs:
 
       - name: Build
         run: |
-          go build -v -o main-${{ matrix.os }} .
+          go build -v -o main .
+
+      - name: Gzip
+        run: |
+          mkdir hello-word-${{ matrix.os }}
+          mv main hello-word-${{ matrix.os }}
+          tar -czvf hello-word-${{ matrix.os }}.tar.gz hello-word-${{ matrix.os }}
 
       - name: Upload to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: main-${{ matrix.os }}
+          args: hello-word-${{ matrix.os }}.tar.gz application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_PASSWORD }}
