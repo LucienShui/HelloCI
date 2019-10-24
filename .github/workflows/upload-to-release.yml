@@ -50,7 +50,7 @@ jobs:
         with:
           args: hello-word-${{ matrix.os }}.tar.gz application/octet-stream
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Docker
         uses: LucienShui/Publish-Docker-Github-Action@2.7.1
