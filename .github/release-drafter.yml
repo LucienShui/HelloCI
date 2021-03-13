@@ -15,6 +15,7 @@ categories:
     labels:
       - 'chore'
       - 'documentation'
+      - 'docs'
 change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   # Changes
