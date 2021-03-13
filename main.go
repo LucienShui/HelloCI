@@ -17,5 +17,4 @@ import (
 func main() {
 	fmt.Println("version 1.0.8")
 	fmt.Println("version 1.0.9")
-	fmt.Println("version 1.1.0")
 }
