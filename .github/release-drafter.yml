@@ -4,6 +4,7 @@ categories:
   - title: 'Features'
     labels:
       - 'feature'
+      - 'feat'
       - 'enhancement'
   - title: 'Bug Fixes'
     labels:
@@ -14,6 +15,7 @@ categories:
     labels:
       - 'chore'
       - 'documentation'
+      - 'docs'
 change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   # Changes
